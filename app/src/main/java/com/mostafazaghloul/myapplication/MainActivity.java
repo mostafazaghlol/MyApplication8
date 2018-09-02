@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AddorRemoveCallbacks {
-
+    public static ArrayList<String> ACitems = new ArrayList<>();
+    public static ArrayList<String> AcPrice= new ArrayList<>();
+    public static ArrayList<String> ACQuantity = new ArrayList<>();
     ArrayList<String>  items=new ArrayList<>();
     ArrayList<String>  Prices=new ArrayList<>();
     ArrayList<String>  Quantity=new ArrayList<>();
@@ -47,25 +49,8 @@ public class MainActivity extends AppCompatActivity implements AddorRemoveCallba
         Quantity.add("35");
         Quantity.add("40");
         Quantity.add("45");
-        Response.Listener<String> listener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e(LOGTAG,response);
-            }
-        };
-        data mData
-                 =new data(items,Prices,Quantity
-        ,"1","mostafa"
-        ,"2","mostafas"
-        ,"011488888","5254.55","2255","hiddsf","comment",listener);
-        RequestQueue mRequestQueue = Volley.newRequestQueue(MainActivity.this);
-        mRequestQueue.add(mData);
-        mRequestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-            @Override
-            public void onRequestFinished(Request<Object> request) {
-                Toast.makeText(MainActivity.this, "Finished", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -99,6 +84,31 @@ public class MainActivity extends AppCompatActivity implements AddorRemoveCallba
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if(id == R.id.cart_action){
+            if(ACitems.size()==0){
+                Toast.makeText(this, "لا توجد بضاعه ف السله !", Toast.LENGTH_SHORT).show();
+            }else{
+                Response.Listener<String> listener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e(LOGTAG,response);
+                    }
+                };
+                data mData
+                        =new data(ACitems,AcPrice,ACQuantity
+                        ,"1","mostafa"
+                        ,"2","mostafas"
+                        ,"011488888","5254.55","2255","hiddsf","comment",listener);
+                RequestQueue mRequestQueue = Volley.newRequestQueue(MainActivity.this);
+                mRequestQueue.add(mData);
+                mRequestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                    @Override
+                    public void onRequestFinished(Request<Object> request) {
+                        Toast.makeText(MainActivity.this, "Finished", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
 
         return super.onOptionsItemSelected(item);
     }

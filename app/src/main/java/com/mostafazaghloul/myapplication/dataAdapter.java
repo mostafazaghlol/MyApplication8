@@ -48,7 +48,7 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        dataIn movie = dataList.get(position);
+        final dataIn movie = dataList.get(position);
         holder.name.setText(movie.getName());
         holder.price.setText(String.valueOf(movie.getPrice()));
         holder.quantity.setText(String.valueOf(movie.getQuantity()));
@@ -61,6 +61,11 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
                         holder.buy.setText("حذف");
                         if (mContext instanceof MainActivity) {
                             ((AddorRemoveCallbacks) mContext).onAddProduct();
+                             MainActivity.ACitems.add(movie.getName());
+                             String price = String.valueOf(Double.parseDouble(holder.price.getText().toString())
+                                     *Double.parseDouble(holder.editText.getText().toString()));
+                             MainActivity.ACQuantity.add(holder.editText.getText().toString());
+                             MainActivity.AcPrice.add(price);
                         }
 
                     } else {
@@ -68,6 +73,11 @@ public class dataAdapter extends RecyclerView.Adapter<dataAdapter.MyViewHolder> 
                         holder.buy.setText("شراء");
                         holder.editText.setText("");
                         ((AddorRemoveCallbacks) mContext).onRemoveProduct();
+                        String name = movie.getName();
+                        int index = MainActivity.ACitems.indexOf(name);
+                        MainActivity.ACitems.remove(index);
+                        MainActivity.ACQuantity.remove(index);
+                        MainActivity.AcPrice.remove(index);
                     }
                 } else {
                     holder.editText.setError("ادخل الكميه المطلوبه!");
