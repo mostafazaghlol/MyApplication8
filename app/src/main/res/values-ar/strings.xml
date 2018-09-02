@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="item_name">اسم المنتج</string>
+    <string name="item_fack_name">الاسم</string>
+    <string name="item_price">السعر</string>
+    <string name="item_quantity">الكمـيه</string>
+</resources>

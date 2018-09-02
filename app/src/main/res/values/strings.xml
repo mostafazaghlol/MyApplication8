@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AddToCartBadgeCount</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_Cart">Cart</string>
+    <string name="action_Notification">Notification</string>
+    <string name="add">addbt</string>
+    <string name="remove">removebt</string>
+    <string name="item_name">item name</string>
+    <string name="item_fack_name">الاسم</string>
+    <string name="item_price">item price</string>
+    <string name="item_quantity">item quantity</string>
+</resources>
